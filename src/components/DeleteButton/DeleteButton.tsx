@@ -12,7 +12,7 @@ function DeleteButton({ onClick }: Props) {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          className="size-4"
+          className="size-6"
         >
           <path
             stroke-linecap="round"
