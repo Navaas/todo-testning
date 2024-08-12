@@ -11,6 +11,12 @@ function App() {
     setTodos(newTodos);
   };
 
+  const handleDelete = (todoToDelete: string) => {
+    const updatedTodos = todos.filter((todo) => todo !== todoToDelete);
+    handleTodosUpdate(updatedTodos); // Uppdatera state och localStorage
+    localStorage.setItem("todos", JSON.stringify(updatedTodos)); // Tas bort från localStorage
+  };
+
   return (
     <>
       <h1>Kom-ihåg-lista</h1>
@@ -22,7 +28,7 @@ function App() {
             <span key={todo} className="mx-4">
               {todo}
             </span>
-            <DeleteButton />
+            <DeleteButton onClick={() => handleDelete(todo)} />
           </div>
         ))}
       </ul>

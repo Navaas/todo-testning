@@ -17,7 +17,7 @@ function TodoForm({ onSubmit }: Props) {
       setTodos(storedTodos); // Uppdatera state
       onSubmit(storedTodos); // Uppdatera den överordnade komponenten
     }
-  }, [onSubmit]);
+  }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

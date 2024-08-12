@@ -1,7 +1,11 @@
-function DeleteButton() {
+interface Props {
+  onClick: () => void;
+}
+
+function DeleteButton({ onClick }: Props) {
   return (
     <>
-      <button>
+      <button onClick={onClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
