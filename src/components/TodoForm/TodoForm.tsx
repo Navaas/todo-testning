@@ -20,7 +20,7 @@ function TodoForm(props: Props) {
         placeholder="Skriv en sak.."
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className="p-2 border border-gray-300 rounded bg-black"
+        className="p-2 border border-gray-300 rounded bg-gray-100 w-full"
       />
       <button>Spara</button>
     </form>

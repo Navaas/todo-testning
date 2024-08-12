@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import DeleteButton from "./components/DeleteButton/DeleteButton";
 import TodoForm from "./components/TodoForm/TodoForm";
 
 function App() {
@@ -12,7 +13,12 @@ function App() {
       {/* Skriv ut listan */}
       <ul>
         {todos.map((todo) => (
-          <li key={todo}>{todo}</li>
+          <div className="my-2">
+            <span key={todo} className="mx-4">
+              {todo}
+            </span>
+            <DeleteButton />
+          </div>
         ))}
       </ul>
     </>
