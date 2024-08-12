@@ -1,9 +1,11 @@
 import { useState } from "react";
 import DeleteButton from "./components/DeleteButton/DeleteButton";
+import EditTodo from "./components/EditButton/EditButton";
 import TodoForm from "./components/TodoForm/TodoForm";
 
 function App() {
   const [todos, setTodos] = useState<string[]>([]);
+  const [editingTodo, setEditingTodo] = useState<string | null>(null);
 
   const handleTodosUpdate = (newTodos: string[]) => {
     setTodos(newTodos);
@@ -12,6 +14,22 @@ function App() {
   const handleDelete = (todoToDelete: string) => {
     const updatedTodos = todos.filter((todo) => todo !== todoToDelete);
     handleTodosUpdate(updatedTodos);
+  };
+
+  const handleEdit = (todo: string) => {
+    setEditingTodo(todo);
+  };
+
+  const handleSaveEdit = (newTodo: string) => {
+    const updatedTodos = todos.map((todo) =>
+      todo === editingTodo ? newTodo : todo
+    );
+    handleTodosUpdate(updatedTodos);
+    setEditingTodo(null);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingTodo(null);
   };
 
   return (
@@ -32,8 +50,26 @@ function App() {
                   key={todo}
                   className="p-2 flex items-center bg-red-200 justify-between"
                 >
-                  <span className="">{todo}</span>
-                  <DeleteButton onClick={() => handleDelete(todo)} />
+                  {editingTodo === todo ? (
+                    <EditTodo
+                      todo={todo}
+                      onSave={handleSaveEdit}
+                      onCancel={handleCancelEdit}
+                    />
+                  ) : (
+                    <>
+                      <span className="">{todo}</span>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleEdit(todo)}
+                          className="p-2 bg-yellow-500 text-white rounded"
+                        >
+                          Redigera
+                        </button>
+                        <DeleteButton onClick={() => handleDelete(todo)} />
+                      </div>
+                    </>
+                  )}
                 </div>
               ))}
             </div>
