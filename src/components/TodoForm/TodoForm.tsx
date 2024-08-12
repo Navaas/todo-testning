@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 
 // Våra props ger oss möjligheten att skapa integrationstester.
 interface Props {
@@ -9,16 +9,6 @@ function TodoForm({ onSubmit }: Props) {
   const [text, setText] = useState("");
   const [todos, setTodos] = useState<string[]>([]);
 
-  useEffect(() => {
-    // Läs todos från localStorage bara vid initialisering
-    const savedTodos = localStorage.getItem("todos");
-    if (savedTodos) {
-      const storedTodos = JSON.parse(savedTodos);
-      setTodos(storedTodos);
-      onSubmit(storedTodos);
-    }
-  }, []);
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (text.trim() === "") return; // Förhindra att tomma todos läggs till
@@ -26,7 +16,6 @@ function TodoForm({ onSubmit }: Props) {
     const newTodos = [...todos, text];
     setTodos(newTodos);
     setText("");
-    localStorage.setItem("todos", JSON.stringify(newTodos));
     onSubmit(newTodos);
   };
 
