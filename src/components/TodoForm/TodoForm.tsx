@@ -10,22 +10,24 @@ function TodoForm({ onSubmit }: Props) {
   const [todos, setTodos] = useState<string[]>([]);
 
   useEffect(() => {
-    const savedTodos = localStorage.getItem("todos"); // Hämta alla "todos" från localStorage
-    // Om det finns "todos" i localStorage, uppdatera state och skicka till förälder
+    // Läs todos från localStorage bara vid initialisering
+    const savedTodos = localStorage.getItem("todos");
     if (savedTodos) {
-      const storedTodos = JSON.parse(savedTodos); //Konvertera JSON-strängen till en array med "todos"
-      setTodos(storedTodos); // Uppdatera state
-      onSubmit(storedTodos); // Uppdatera den överordnade komponenten
+      const storedTodos = JSON.parse(savedTodos);
+      setTodos(storedTodos);
+      onSubmit(storedTodos);
     }
   }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const newTodos = [...todos, text]; // Skapa en ny array med den nya "todo" och alla tidigare "todos"
-    setTodos(newTodos); // Uppdatera state
-    setText(""); // Rensa input-fältet
-    localStorage.setItem("todos", JSON.stringify(newTodos)); // Spara "todos" till localStorage
-    onSubmit(newTodos); // Uppdatera den överordnade komponenten
+    if (text.trim() === "") return; // Förhindra att tomma todos läggs till
+
+    const newTodos = [...todos, text];
+    setTodos(newTodos);
+    setText("");
+    localStorage.setItem("todos", JSON.stringify(newTodos));
+    onSubmit(newTodos);
   };
 
   return (
