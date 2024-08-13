@@ -24,7 +24,11 @@ const EditTodo: React.FC<EditTodoProps> = ({ todo, onSave, onCancel }) => {
         className="p-2 border border-gray-300 rounded bg-gray-100 w-full"
       />
 
-      <button onClick={handleSave} className="p-2 0 text-black rounded">
+      <button
+        onClick={handleSave}
+        className="p-2 0 text-black rounded"
+        data-testid="edit-button"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -36,7 +40,11 @@ const EditTodo: React.FC<EditTodoProps> = ({ todo, onSave, onCancel }) => {
           <path d="m4.5 12.75 6 6 9-13.5" />
         </svg>
       </button>
-      <button onClick={onCancel} className="p-2 0 text-black rounded">
+      <button
+        onClick={onCancel}
+        className="p-2 0 text-black rounded"
+        data-testid="cancel-button"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

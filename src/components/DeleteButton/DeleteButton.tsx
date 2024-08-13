@@ -5,7 +5,7 @@ interface Props {
 function DeleteButton({ onClick }: Props) {
   return (
     <>
-      <button onClick={onClick}>
+      <button onClick={onClick} data-testid="delete-button">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

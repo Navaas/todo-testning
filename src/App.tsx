@@ -91,6 +91,7 @@ function App() {
                         <button
                           onClick={() => handleEdit(todo.id)}
                           className="p-2 text-black rounded"
+                          data-testid="edit-button"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
