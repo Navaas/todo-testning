@@ -60,7 +60,7 @@ function App() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-blue-500 to-white h-screen w-full flex flex-col items-center justify-center">
+    <div className="bg-[url('https://wallpapers.com/images/high/white-marble-background-5w2vm7osht89hx9s.webp')] bg-cover bg-center bg-opacity-50 w-full h-screen flex flex-col items-center justify-center">
       <h1 className="text-4xl md:text-6xl mb-10">Att-göra-lista</h1>
       <div className="flex flex-col w-full p-2 md:w-1/3 gap-4 ">
         <div className="flex flex-col items-center bg-white p-4 w-full rounded-md shadow-xl">

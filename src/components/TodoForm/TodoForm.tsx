@@ -28,7 +28,7 @@ function TodoForm({ onSubmit }: Props) {
       />
       <button
         type="submit"
-        className="p-2 bg-blue-500 text-white rounded  w-1/4"
+        className="p-2 bg-slate-500 hover:bg-slate-700 text-white rounded  w-1/4"
       >
         Spara
       </button>
