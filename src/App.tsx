@@ -60,22 +60,23 @@ function App() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-blue-500 to-white h-screen w-full flex items-center justify-center">
-      <div className="flex flex-col w-full p-2 md:w-1/2 gap-4 ">
-        <div className="flex flex-col items-center bg-white p-2 w-full">
+    <div className="bg-gradient-to-b from-blue-500 to-white h-screen w-full flex flex-col items-center justify-center">
+      <h1 className="text-4xl md:text-6xl mb-10">Att-göra-lista</h1>
+      <div className="flex flex-col w-full p-2 md:w-1/3 gap-4 ">
+        <div className="flex flex-col items-center bg-white p-4 w-full rounded-md shadow-xl">
           <TodoForm onSubmit={handleAddTodo} />
         </div>
-        <div className="flex flex-col bg-white p-2 w-full">
+        <div className="flex flex-col bg-white p-4 w-full rounded-md shadow-xl">
           <h2 className="font-bold">Att göra:</h2>
           <hr className="mb-4" />
           {todos.length === 0 ? (
             <p>Listan är tom</p>
           ) : (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 mb-4">
               {todos.map((todo) => (
                 <div
                   key={todo.id}
-                  className="p-2 flex items-center bg-red-200 justify-between"
+                  className="p-2 flex items-center bg-gray-200 justify-between shadow-xl rounded-md hover:bg-gray-300"
                 >
                   {editingTodoId === todo.id ? (
                     <EditTodo

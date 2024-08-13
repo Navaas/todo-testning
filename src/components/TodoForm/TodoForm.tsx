@@ -17,16 +17,14 @@ function TodoForm({ onSubmit }: Props) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full flex flex-col items-center justify-center gap-2"
-    >
+    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-2">
+      <h2>Lägg till ny todo</h2>
       <input
         type="text"
         placeholder="Skriv en sak.."
         value={text}
         onChange={(e) => setText(e.target.value)}
-        className=" p-2 border border-gray-300 rounded w-full bg-gray-100 md:w-1/2"
+        className=" p-2 border border-gray-300 rounded w-full bg-gray-100"
       />
       <button
         type="submit"
