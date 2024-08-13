@@ -1,22 +1,19 @@
 import { FormEvent, useState } from "react";
 
-// Våra props ger oss möjligheten att skapa integrationstester.
+//
 interface Props {
-  onSubmit: (todos: string[]) => void;
+  onSubmit: (newTodo: string) => void; // Skickar enbart nya todo-uppgifter
 }
 
 function TodoForm({ onSubmit }: Props) {
   const [text, setText] = useState("");
-  const [todos, setTodos] = useState<string[]>([]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (text.trim() === "") return; // Förhindra att tomma todos läggs till
+    if (text.trim() === "") return;
 
-    const newTodos = [...todos, text];
-    setTodos(newTodos);
+    onSubmit(text); // Skicka den nya todo-uppgiften
     setText("");
-    onSubmit(newTodos);
   };
 
   return (
