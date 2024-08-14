@@ -1,4 +1,3 @@
-// // App.test.tsx
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import App from "./App";
@@ -20,7 +19,7 @@ const mockLocalStorage = (function () {
     clear() {
       store = {};
     },
-    // TypeScript expects these properties for `Storage`
+
     length: 0,
     key(index: number) {
       return Object.keys(store)[index] || null;
@@ -32,8 +31,6 @@ globalThis.localStorage = mockLocalStorage as unknown as Storage;
 describe("App", () => {
   it("should add a new todo", async () => {
     render(<App />);
-
-    // Simulera att lägga till en ny todo
     fireEvent.change(screen.getByPlaceholderText("Skriv en sak.."), {
       target: { value: "New Todo" },
     });
@@ -45,16 +42,13 @@ describe("App", () => {
   });
 
   it("should delete a todo", async () => {
-    // För att testa borttagning, skapa en initial todo
     localStorage.setItem(
       "todos",
       JSON.stringify([{ id: 1, text: "Todo to delete" }])
     );
     render(<App />);
-
-    // Kontrollera att todo finns först
+    // Kontrollera att todo finns
     expect(screen.getByText("Todo to delete")).toBeInTheDocument();
-
     // Klicka på Delete-knappen
     fireEvent.click(screen.getByTestId("delete-button"));
 
@@ -64,22 +58,18 @@ describe("App", () => {
   });
 
   it("should edit a todo", async () => {
-    // För att testa redigering, skapa en initial todo
     localStorage.setItem(
       "todos",
       JSON.stringify([{ id: 1, text: "Todo to edit" }])
     );
     render(<App />);
-
     // Klicka på Edit-knappen
     fireEvent.click(screen.getByTestId("edit-button"));
-
     // Ändra texten i inputfältet
     fireEvent.change(screen.getByDisplayValue("Todo to edit"), {
       target: { value: "Edited Todo" },
     });
-
-    // Klicka på Save-knappen
+    // Klicka på spara-knappen
     fireEvent.click(screen.getByTestId("edit-button"));
 
     await waitFor(() => {
@@ -88,7 +78,6 @@ describe("App", () => {
   });
 
   it("should load todos from localStorage on initial render", () => {
-    // För att testa laddning, skapa en initial todo
     localStorage.setItem(
       "todos",
       JSON.stringify([{ id: 1, text: "Initial Todo" }])
@@ -99,7 +88,7 @@ describe("App", () => {
     expect(screen.getByText("Initial Todo")).toBeInTheDocument();
   });
   it("should call onSave when edit button is clicked", () => {
-    const handleSave = vi.fn(); // vitest's mock function
+    const handleSave = vi.fn();
     const handleCancel = vi.fn();
 
     render(
@@ -122,7 +111,7 @@ describe("App", () => {
   });
 
   it("should call onSave with the edited todo when the edit button is clicked", () => {
-    const handleSave = vi.fn(); // vitest's mock function
+    const handleSave = vi.fn();
     const handleCancel = vi.fn();
     const initialTodo = "Todo to edit";
     const newTodo = "Edited Todo";
@@ -134,8 +123,6 @@ describe("App", () => {
         onCancel={handleCancel}
       />
     );
-
-    // Kontrollera att initialtodo finns i inputfältet
     expect(screen.getByDisplayValue(initialTodo)).toBeInTheDocument();
 
     // Ändra texten i inputfältet
@@ -146,7 +133,7 @@ describe("App", () => {
     // Klicka på Edit-knappen
     fireEvent.click(screen.getByTestId("edit-button"));
 
-    // Verifiera att handleSave har kallats med den nya texten
+    // Kolla att handleSave har sparat den nya texten
     expect(handleSave).toHaveBeenCalledWith(newTodo);
   });
 

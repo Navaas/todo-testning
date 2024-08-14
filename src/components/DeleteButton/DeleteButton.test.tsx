@@ -6,12 +6,10 @@ import DeleteButton from "./DeleteButton";
 describe("DeleteButton", () => {
   it("should render the button with an SVG icon", () => {
     render(<DeleteButton onClick={() => {}} />);
-
-    // Verifiera att knappen är i dokumentet
+    // Hitta knappen
     const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
-
-    // Verifiera att SVG-ikonen är i dokumentet
+    // Hitta svg-ikonen
     const svg = button.querySelector("svg");
     expect(svg).toBeInTheDocument();
   });
@@ -19,11 +17,9 @@ describe("DeleteButton", () => {
   it("should call onClick when the button is clicked", () => {
     const handleClick = vi.fn();
     render(<DeleteButton onClick={handleClick} />);
-
     // Klicka på knappen
     fireEvent.click(screen.getByRole("button"));
-
-    // Verifiera att onClick har anropats
+    // Kolla att onClick har anropats
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
