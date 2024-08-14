@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DeleteButton from "./components/DeleteButton/DeleteButton";
 import EditForm from "./components/EditForm/EditForm";
 import TodoForm from "./components/TodoForm/TodoForm";
-import Header from "./Header";
+import DayAndTime from "./DayAndTime";
 
 interface Todo {
   id: number;
@@ -62,15 +62,14 @@ function App() {
 
   return (
     <>
-      <Header />
       <div className="bg-[url('https://wallpapers.com/images/high/white-marble-background-5w2vm7osht89hx9s.webp')] bg-cover bg-center bg-opacity-50 w-full h-screen flex flex-col items-center justify-center">
-        <h1 className="text-4xl md:text-6xl mb-10">Att-göra-lista</h1>
         <div className="flex flex-col w-full p-2 md:w-1/3 gap-4 ">
+          <DayAndTime />
           <div className="flex flex-col items-center bg-white p-4 w-full rounded-md shadow-xl">
             <TodoForm onSubmit={handleAddTodo} />
           </div>
           <div className="flex flex-col bg-white p-4 w-full rounded-md shadow-xl">
-            <h2 className="font-bold">Att göra:</h2>
+            <h2 className="font-bold font-custom">Att göra:</h2>
             <hr className="mb-4" />
             {todos.length === 0 ? (
               <p>Listan är tom</p>

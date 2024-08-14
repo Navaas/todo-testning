@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Header() {
+function DayAndTime() {
   const today = new Date();
   const [currentTime, setCurrentTime] = useState<string>("");
 
@@ -30,13 +30,13 @@ function Header() {
   return (
     <div className="flex flex-col p-4">
       <div className="flex justify-end">
-        <h2 className="text-4xl">{currentTime}</h2>
+        <h2 className="text-3xl">{currentTime}</h2>
       </div>
       <div className="flex justify-end">
-        <p className="text-2xl">{formattedDate}</p>
+        <p className="text-xl">{formattedDate}</p>
       </div>
     </div>
   );
 }
 
-export default Header;
+export default DayAndTime;

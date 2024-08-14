@@ -17,7 +17,7 @@ function TodoForm({ onSubmit }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-2">
-      <h2>Lägg till ny todo</h2>
+      <h2 className="text-md">Lägg till ny todo</h2>
       <input
         type="text"
         placeholder="Skriv en sak.."
