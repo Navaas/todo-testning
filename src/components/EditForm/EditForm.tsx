@@ -6,7 +6,7 @@ interface EditTodoProps {
   onCancel: () => void;
 }
 
-const EditTodo: React.FC<EditTodoProps> = ({ todo, onSave, onCancel }) => {
+function EditForm({ todo, onSave, onCancel }: EditTodoProps) {
   const [editedTodo, setEditedTodo] = useState(todo);
 
   const handleSave = () => {
@@ -58,6 +58,6 @@ const EditTodo: React.FC<EditTodoProps> = ({ todo, onSave, onCancel }) => {
       </button>
     </div>
   );
-};
+}
 
-export default EditTodo;
+export default EditForm;

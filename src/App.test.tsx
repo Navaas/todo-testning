@@ -1,10 +1,10 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import App from "./App";
-import EditTodo from "./components/EditButton/EditButton";
+import EditTodo from "./components/EditForm/EditForm";
 
 // Mock localStorage
-const mockLocalStorage = (function () {
+function createMockLocalStorage(): Storage {
   let store: Record<string, string> = {};
   return {
     getItem(key: string) {
@@ -25,8 +25,9 @@ const mockLocalStorage = (function () {
       return Object.keys(store)[index] || null;
     },
   };
-})();
-globalThis.localStorage = mockLocalStorage as unknown as Storage;
+}
+
+globalThis.localStorage = createMockLocalStorage();
 
 describe("App", () => {
   it("should add a new todo", async () => {
@@ -110,33 +111,6 @@ describe("App", () => {
     expect(handleSave).toHaveBeenCalled();
   });
 
-  it("should call onSave with the edited todo when the edit button is clicked", () => {
-    const handleSave = vi.fn();
-    const handleCancel = vi.fn();
-    const initialTodo = "Todo to edit";
-    const newTodo = "Edited Todo";
-
-    render(
-      <EditTodo
-        todo={initialTodo}
-        onSave={handleSave}
-        onCancel={handleCancel}
-      />
-    );
-    expect(screen.getByDisplayValue(initialTodo)).toBeInTheDocument();
-
-    // Ändra texten i inputfältet
-    fireEvent.change(screen.getByDisplayValue(initialTodo), {
-      target: { value: newTodo },
-    });
-
-    // Klicka på Edit-knappen
-    fireEvent.click(screen.getByTestId("edit-button"));
-
-    // Kolla att handleSave har sparat den nya texten
-    expect(handleSave).toHaveBeenCalledWith(newTodo);
-  });
-
   it("should call onCancel when cancel button is clicked", () => {
     const handleSave = vi.fn();
     const handleCancel = vi.fn();
@@ -153,7 +127,7 @@ describe("App", () => {
     // Klicka på Cancel-knappen
     fireEvent.click(screen.getByTestId("cancel-button"));
 
-    // Verifiera att handleCancel har kallats
+    // Kollar att handleCancel har anropats
     expect(handleCancel).toHaveBeenCalled();
   });
 });

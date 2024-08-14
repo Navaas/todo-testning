@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DeleteButton from "./components/DeleteButton/DeleteButton";
-import EditTodo from "./components/EditButton/EditButton";
+import EditForm from "./components/EditForm/EditForm";
 import TodoForm from "./components/TodoForm/TodoForm";
 import Header from "./Header";
 
@@ -82,7 +82,7 @@ function App() {
                     className="p-2 flex items-center bg-gray-200 justify-between shadow-xl rounded-md hover:bg-gray-300"
                   >
                     {editingTodoId === todo.id ? (
-                      <EditTodo
+                      <EditForm
                         todo={todo.text}
                         onSave={handleSaveEdit}
                         onCancel={handleCancelEdit}

@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 
-//
 interface Props {
   onSubmit: (newTodo: string) => void; // Skickar enbart nya todo-uppgifter
 }
