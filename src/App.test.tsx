@@ -130,4 +130,20 @@ describe("App", () => {
     // Kollar att handleCancel har anropats
     expect(handleCancel).toHaveBeenCalled();
   });
+  it("should cancel editing a todo", async () => {
+    localStorage.setItem(
+      "todos",
+      JSON.stringify([{ id: 1, text: "Todo to cancel edit" }])
+    );
+    render(<App />);
+    fireEvent.click(screen.getByTestId("edit-button"));
+    fireEvent.click(screen.getByTestId("cancel-button"));
+
+    await waitFor(() => {
+      expect(screen.getByText("Todo to cancel edit")).toBeInTheDocument();
+      expect(
+        screen.queryByDisplayValue("Todo to cancel edit")
+      ).not.toBeInTheDocument();
+    });
+  });
 });
