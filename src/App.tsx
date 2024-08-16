@@ -20,7 +20,7 @@ function App() {
       const parsedTodos = JSON.parse(savedTodos);
       setTodos(parsedTodos);
     }
-  }, []); // Denna useEffect körs bara en gång, vid första renderingen
+  }, []);
 
   // Spara todos i localStorage vid varje ändring av todos arrayen
   useEffect(() => {

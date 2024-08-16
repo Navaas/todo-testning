@@ -107,7 +107,7 @@ describe("App", () => {
     const editButton = screen.getByTestId("edit-button");
     fireEvent.click(editButton);
 
-    // Verifiera att onSave har kallats
+    // Verifiera att onSave har anropats
     expect(handleSave).toHaveBeenCalled();
   });
 

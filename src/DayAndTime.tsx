@@ -15,17 +15,17 @@ function DayAndTime() {
       setCurrentTime(formattedTime);
     };
 
-    updateTime(); // Uppdatera direkt
-    const intervalId = setInterval(updateTime, 1000); // Uppdatera varje sekund
+    updateTime();
+    const intervalId = setInterval(updateTime, 1000);
 
-    return () => clearInterval(intervalId); // Rensa intervallet när komponenten avmonteras
+    return () => clearInterval(intervalId);
   }, []);
 
   const formattedDate = today.toLocaleDateString("sv-SE", {
-    weekday: "long", // "måndag"
-    year: "numeric", // "2023"
-    month: "long", // "augusti"
-    day: "numeric", // "13"
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
   return (
     <div className="flex flex-col p-4">
