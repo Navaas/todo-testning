@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DeleteButton from "./components/DeleteButton/DeleteButton";
 import EditForm from "./components/EditForm/EditForm";
+import Footer from "./components/Footer";
 import TodoForm from "./components/TodoForm/TodoForm";
 import DayAndTime from "./DayAndTime";
 
@@ -62,8 +63,8 @@ function App() {
 
   return (
     <>
-      <div className="bg-[url('https://wallpapers.com/images/high/white-marble-background-5w2vm7osht89hx9s.webp')] bg-cover bg-center bg-opacity-50 w-full h-screen flex flex-col items-center justify-center">
-        <div className="flex flex-col w-full p-2 md:w-1/3 gap-4 ">
+      <div className="flex flex-col min-h-screen bg-[url('https://wallpapers.com/images/high/white-marble-background-5w2vm7osht89hx9s.webp')] bg-cover bg-center bg-opacity-50 w-full">
+        <div className="flex flex-col w-full p-2 md:w-1/3 gap-4 flex-grow md:justify-center md:items-center mx-auto">
           <DayAndTime />
           <div className="flex flex-col items-center bg-white p-4 w-full rounded-md shadow-xl">
             <TodoForm onSubmit={handleAddTodo} />
@@ -88,7 +89,7 @@ function App() {
                       />
                     ) : (
                       <>
-                        <span className="">{todo.text}</span>
+                        <span>{todo.text}</span>
                         <div className="flex gap-2">
                           <button
                             onClick={() => handleEdit(todo.id)}
@@ -119,6 +120,8 @@ function App() {
             )}
           </div>
         </div>
+
+        <Footer />
       </div>
     </>
   );

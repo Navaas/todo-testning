@@ -28,7 +28,7 @@ function DayAndTime() {
     day: "numeric",
   });
   return (
-    <div className="flex flex-col p-4">
+    <div className="flex flex-col w-full pt-6 md:pt-0">
       <div className="flex justify-end">
         <h2 className="text-3xl">{currentTime}</h2>
       </div>
